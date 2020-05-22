@@ -8,7 +8,7 @@ const apiDetection = (function () {
                     let args = arguments;
                     let value = orig.apply(this, args);
 
-                    window.navigator.monitorApiAccess[item.propName]++;
+                    window.navigator.monitorApiAccess[item.propName]++; // increment the counter ... needed is prop and subProb?
 
                     return value;
                 };
