@@ -2,6 +2,20 @@ const apiDetection = (function () {
 	
 	const detectApiAccess = function () {
 
+        function overrideFunction(item) {
+            item.obj[item.propName] = (function (orig) {
+                return function () {
+                    let args = arguments;
+                    let value = orig.apply(this, args);
+
+                    window.navigator.monitorApiAccess[item.propName]++;
+
+                    return value;
+                };
+
+            }(item.obj[item.propName]));
+        }
+
         const attributesToMonitor = {
             navigator: [
                 'platform',
