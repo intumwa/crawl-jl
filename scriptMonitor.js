@@ -72,6 +72,7 @@ const apiDetection = (function () {
                 else
                     window.navigator.monitorApiAccess[`${prop}.${subProp}`]++;
             }
+            return originalValues[subProp];
         }
 
         window.navigator.monitorApiAccess = {};
